@@ -1,13 +1,10 @@
 # SegmentSPA
 Demonstrates a Segment Implementation in a React Single Page App
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the segment-spa directory, you can run:
+In the root directory, you can run:
 
 ### `yarn start`
 
@@ -42,11 +39,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
 
@@ -66,7 +58,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This app is deployed on Heroku.
+
+Prerequisites:
+  1. Heroku cli tool
+  2. suitable permission to deploy to the Heroku repository
+
+1. Push local changes to the Github repository https://github.com/PetersWalker/SegmentSPA
+2. Push changes to the Heroku remote git repository's main branch at https://git.heroku.com/fierce-ravine-57961.git
+
+    git push heroku main
+
+The app is at the following URL
+https://fierce-ravine-57961.herokuapp.com/
 
 ### `yarn build` fails to minify
 
