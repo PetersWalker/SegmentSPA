@@ -4,6 +4,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {Pane, Menu} from "evergreen-ui"
 
 export default function App() {
@@ -36,17 +38,66 @@ export default function App() {
   );
 }
 
-function Home() {
-  window.analytics.page()
-  return <h2>Home</h2>;
+// function Home() {
+//   compnentDidMount() {
+//       window.analytics.page()
+//   };
+//
+//   return <h2>Home</h2>;
+// }
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    window.analytics.page()
+
+  }
+  render() {
+    return (
+      <div>
+        <h1>Home</h1>
+      </div>
+    );
+  }
 }
 
-function About() {
-  window.analytics.page()
-  return <h2>About</h2>;
+class About extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    window.analytics.page()
+
+  }
+  render() {
+    return (
+      <div>
+        <h1>About</h1>
+      </div>
+    );
+  }
 }
 
-function Users() {
-  window.analytics.page()
-  return <h2>Users</h2>;
+class Users extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    window.analytics.page()
+
+  }
+  render() {
+    return (
+      <div>
+        <h1>Users</h1>
+      </div>
+    );
+  }
 }
