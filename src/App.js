@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link, NavLink
 } from "react-router-dom";
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -10,13 +10,20 @@ import {Pane, Menu} from "evergreen-ui"
 
 export default function App() {
   return (
+
     <Router>
       <div>
         <Menu>
           <Menu.Group>
-              <Link to="/" role="menuitem">Home</Link>
-              <Link to="/about"  role="menuitem">About</Link>
-              <Link to="/users"  role="menuitem">Users</Link>
+              <Menu.Item>
+                <Link to="/">Home</Link>
+              </Menu.Item>
+              <Menu.Item>
+                <NavLink to="/about">About</NavLink>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to="/users">Users</Link>
+              </Menu.Item>
           </Menu.Group>
         </Menu>
 
