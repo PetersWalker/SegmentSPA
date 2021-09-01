@@ -37,13 +37,16 @@ export default function App() {
 }
 
 function Home() {
+  window.analytics.page()
   return <h2>Home</h2>;
 }
 
 function About() {
+  window.analytics.page()
   return <h2>About</h2>;
 }
 
 function Users() {
+  window.analytics.page()
   return <h2>Users</h2>;
 }
