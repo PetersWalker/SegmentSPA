@@ -29,8 +29,8 @@ export default function App() {
               <Route path="/about">
                 <About />
               </Route>
-              <Route path="/users">
-                <Users />
+              <Route path="/experiment">
+                <Experiment />
               </Route>
               <Route path="/">
                 <Home />
@@ -84,7 +84,7 @@ class About extends React.Component {
   }
 }
 
-class Users extends React.Component {
+class Experiment extends React.Component {
 
   componentDidMount() {
     window.analytics.page()
@@ -92,9 +92,15 @@ class Users extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h1>Users</h1>
-      </div>
+      <Pane>
+        <h1>Experiment</h1>
+        <TextInputField
+          label="Enter Your Analytics.js API key"
+          onChange={e => this.setState({apikKey:e.target.value})}
+        />
+        <Button
+        onClick={this.handleClick()}> Submit </Button>
+      </Pane>
     );
   }
 }
@@ -123,8 +129,8 @@ class CustomMenu extends React.Component {
           </Pane>
 
           <Pane>
-            <Link style={{ textDecoration: 'none' }} to="/users">
-              <Menu.Item> Users </Menu.Item>
+            <Link style={{ textDecoration: 'none' }} to="/experiment">
+              <Menu.Item> Experiment </Menu.Item>
             </Link>
           </Pane>
 
