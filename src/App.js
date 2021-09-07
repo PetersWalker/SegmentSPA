@@ -2,41 +2,41 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link, NavLink
+  Link
 } from "react-router-dom";
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Pane, Menu, Button, SideSheet, MenuIcon, Icon} from "evergreen-ui"
+import {Pane, Menu, TextInputField, Button} from "evergreen-ui"
 
 export default function App() {
-  const [isShown, setIsShown] = React.useState(false)
   return (
 
     <Router>
         <Pane
         display="grid"
-        grid-template-columns= "1fr 10fr">
+        gridTemplateColumns= "1fr 10fr">
 
           <Pane>
             <CustomMenu />
           </Pane>
 
 
-        <Pane
-        gridColumnStart="2"
-        justifyConyent="center">
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/users">
-              <Users />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </Pane>
+          <Pane
+          gridColumnStart="2"
+          display="flex"
+          alignItems="center"
+          justifyContent="center">
+            <Switch>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/users">
+                <Users />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </Pane>
 
         </Pane>
     </Router>
@@ -51,9 +51,6 @@ export default function App() {
 //   return <h2>Home</h2>;
 // }
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     window.analytics.page()
@@ -62,19 +59,17 @@ class Home extends React.Component {
   render() {
     return (
       <Pane
-      justifyConyent="center">
+      alignItems="center">
 
-        <h1>Welcome</h1>
+        <h1>Welcome to this Segment Demo!</h1>
+        <ContactForm />
+
       </Pane>
     );
   }
 }
 
 class About extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
 
   componentDidMount() {
     window.analytics.page()
@@ -90,10 +85,6 @@ class About extends React.Component {
 }
 
 class Users extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
 
   componentDidMount() {
     window.analytics.page()
@@ -110,39 +101,86 @@ class Users extends React.Component {
 
 
 class CustomMenu extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
-      <Menu containerProps={{
-        width:"32px"
-      }}>
+      <Menu>
         <Menu.Group
         containerProps={{
           width:"32px"
         }}>
-            <Menu.Item
-            containerProps={{
-              width:"32px",
-            }}>
-                <Link to="/">Home</Link>
-            </Menu.Item>
-            <Menu.Item
-            containerProps={{
-              width:"32px"
-            }}>
-              <NavLink to="/about">About</NavLink>
-            </Menu.Item>
-            <Menu.Item
-            containerProps={{
-              width:"32px"
-            }}>
-              <Link to="/users">Users</Link>
-            </Menu.Item>
+
+          <Pane>
+            <Link style={{ textDecoration: 'none' }} to="/">
+              <Menu.Item > Home </Menu.Item>
+            </Link>
+          </Pane>
+
+          <Pane>
+            <Link style={{ textDecoration: 'none' }} to="/about">
+              <Menu.Item > About </Menu.Item>
+            </Link>
+          </Pane>
+
+          <Pane>
+            <Link style={{ textDecoration: 'none' }} to="/users">
+              <Menu.Item> Users </Menu.Item>
+            </Link>
+          </Pane>
+
+
         </Menu.Group>
       </Menu>
+    );
+  }
+}
+
+
+class ContactForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      name: '',
+      email: '',
+      company: ''
+    };
+  }
+
+  handleClick() {
+    window.analytics.identify({
+      "name":this.state.name,
+      "email":this.state.email,
+      "company":this.state.company
+
+    })
+  }
+  render() {
+
+    return (
+      <Pane marginTop="32px">
+
+      <h2>Contact Us</h2>
+      <TextInputField
+        label="Name"
+        placeholder="e.g. John Smith"
+        onChange={e => this.setState({name:e.target.value})}
+      />
+
+      <TextInputField
+        label="Email"
+        placeholder="e.g. John.Smith@example.com"
+        onChange={e => this.setState({email:e.target.value})}
+      />
+
+      <TextInputField
+        label="Company"
+        placeholder="e.g. Segment"
+        onChange={e => this.setState({company:e.target.value})}
+      />
+      <Button
+      onClick={this.handleClick}> Submit </Button>
+      </Pane>
     );
   }
 }
