@@ -6,41 +6,39 @@ import {
 } from "react-router-dom";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Pane, Menu} from "evergreen-ui"
+import {Pane, Menu, Button, SideSheet, MenuIcon, Icon} from "evergreen-ui"
 
 export default function App() {
+  const [isShown, setIsShown] = React.useState(false)
   return (
 
     <Router>
-      <div>
-        <Menu>
-          <Menu.Group>
-              <Menu.Item>
-                <Link to="/">Home</Link>
-              </Menu.Item>
-              <Menu.Item>
-                <NavLink to="/about">About</NavLink>
-              </Menu.Item>
-              <Menu.Item>
-                <Link to="/users">Users</Link>
-              </Menu.Item>
-          </Menu.Group>
-        </Menu>
+        <Pane
+        display="grid"
+        grid-template-columns= "1fr 10fr">
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+          <Pane>
+            <CustomMenu />
+          </Pane>
+
+
+        <Pane
+        gridColumnStart="2"
+        justifyConyent="center">
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/users">
+              <Users />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Pane>
+
+        </Pane>
     </Router>
   );
 }
@@ -55,7 +53,6 @@ export default function App() {
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
   }
 
   componentDidMount() {
@@ -64,9 +61,11 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h1>Home</h1>
-      </div>
+      <Pane
+      justifyConyent="center">
+
+        <h1>Welcome</h1>
+      </Pane>
     );
   }
 }
@@ -105,6 +104,45 @@ class Users extends React.Component {
       <div>
         <h1>Users</h1>
       </div>
+    );
+  }
+}
+
+
+class CustomMenu extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <Menu containerProps={{
+        width:"32px"
+      }}>
+        <Menu.Group
+        containerProps={{
+          width:"32px"
+        }}>
+            <Menu.Item
+            containerProps={{
+              width:"32px",
+            }}>
+                <Link to="/">Home</Link>
+            </Menu.Item>
+            <Menu.Item
+            containerProps={{
+              width:"32px"
+            }}>
+              <NavLink to="/about">About</NavLink>
+            </Menu.Item>
+            <Menu.Item
+            containerProps={{
+              width:"32px"
+            }}>
+              <Link to="/users">Users</Link>
+            </Menu.Item>
+        </Menu.Group>
+      </Menu>
     );
   }
 }
