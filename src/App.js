@@ -85,7 +85,17 @@ class About extends React.Component {
 }
 
 class Experiment extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      apiKey: '',
+    };
+  }
 
+  handleClick(){
+
+  }
   componentDidMount() {
     window.analytics.page()
 
